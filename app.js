@@ -24,9 +24,22 @@ const promptUser = () => {
       message: 'Enter your GitHub username'
     },
     {
+      type: 'confirm',
+      name: 'confirmAbout',
+      message: 'Would you like to add some information about yourself to be featured in the "About" section?',
+      default: true
+    },
+    {
       type: 'input',
       name: 'about',
-      message: 'Provide some information about yourself:'
+      message: 'Provide some information about yourself:',
+      when: ({ confirmAbout }) => {
+        if (confirmAbout) {
+          return true;
+        } else {
+          return false;
+        }
+      }
     }
   ]);
 };
